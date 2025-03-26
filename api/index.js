@@ -19,8 +19,18 @@ mongoose
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 
+app.get('/',(req,res)=>{
+  res.send('Hello World');
+})
+
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/tasks', require('./routes/tasks'));
+app.use('/api/project',require('./routes/project'))
 
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+
+const server = app.listen(port, () => console.log(`Server running on port ${port}`));
+
+
+module.exports = {app,server}
